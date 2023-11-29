@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Pricing from "./pages/Pricing";
@@ -11,16 +10,23 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from "./components/Form";
 import "./index.css";
-import { CitiesProvider,useCities } from "./contexts/CitiesContext";
+import { CitiesProvider } from "./contexts/CitiesContext";
+import { AuthProvider } from "./contexts/FakeAuth";
+import ProtectedUrls from "./components/ProtectedUrls";
 
 export default function App() {
   return (
+    <AuthProvider>
     <CitiesProvider>
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage />} />
 
-          <Route path="app" element={<AppLayout />}>
+          <Route path="app" element={
+          <ProtectedUrls>
+            <AppLayout />
+          </ProtectedUrls>
+          }>
             <Route index element={<Navigate to="cites" replace />} />
             <Route path="cites" element={<CityList />} />
             <Route path="cites/:id" element={<City />} />
@@ -35,5 +41,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </CitiesProvider>
+    </AuthProvider>
   );
 }
