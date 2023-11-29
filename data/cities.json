@@ -35,6 +35,66 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Ayia Napa",
+      "country": "Cyprus",
+      "date": "2023-11-26T11:17:52.730Z",
+      "emoji": "🇨🇾",
+      "notes": "Nissi beach is very beautifull ",
+      "position": {
+        "lat": "34.98411448266917",
+        "lng": "33.98115642037969"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Herat",
+      "country": "Afghanistan",
+      "date": "2023-11-26T11:20:45.029Z",
+      "emoji": "🇦🇫",
+      "notes": "ناحیه سیزدهم شهرک زیبای جبرِییل",
+      "position": {
+        "lat": "34.37745550992516",
+        "lng": "62.14594262972078"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Larnaca",
+      "country": "Cyprus",
+      "date": "2023-11-29T08:13:35.132Z",
+      "emoji": "🇨🇾",
+      "notes": "",
+      "position": {
+        "lat": "34.91765104789894",
+        "lng": "33.62228393554688"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Limassol",
+      "country": "Cyprus",
+      "date": "2023-11-29T08:13:49.995Z",
+      "emoji": "🇨🇾",
+      "notes": "notes",
+      "position": {
+        "lat": "34.68266488282476",
+        "lng": "33.029708862304695"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Nicosia",
+      "country": "Cyprus",
+      "date": "2023-11-29T08:14:19.188Z",
+      "emoji": "🇨🇾",
+      "notes": "Nicosia",
+      "position": {
+        "lat": "35.173860890455614",
+        "lng": "33.36616516113282"
+      },
+      "id": 98443205
     }
   ]
 }

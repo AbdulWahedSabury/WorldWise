@@ -1,26 +1,51 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvent,
+} from "react-leaflet";
 import { useCities } from "../contexts/CitiesContext";
 import { useEffect, useState } from "react";
+import Button from "./Button";
+import { useGeolocation } from "../Hooks/UseGeolocation";
+import { useUrlPosition } from "../contexts/UseUrlPosition";
 export default function Map() {
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const latMap = searchParams.get("lat");
-  const lngMap = searchParams.get("lng");
+  const {
+    isLoading: isLoadingPosition,
+    position: locationPosition,
+    getPosition,
+  } = useGeolocation();
+  const [lat,lng] = useUrlPosition();
 
   const { cities } = useCities();
   const [position, setPosition] = useState([40, 0]);
 
   useEffect(
     function () {
-      if (latMap && lngMap) setPosition([latMap, lngMap]);
+      if (lat && lng) setPosition([lat, lng]);
     },
-    [latMap, lngMap]
+    [lat, lng]
   );
 
+  useEffect(
+    function () {
+      if (locationPosition)
+        setPosition([locationPosition.lat, locationPosition.lng]);
+    },
+    [locationPosition]
+  );
   return (
     <div className={styles.mapContainer}>
+      {!locationPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "Loading.." : "Use my location"}
+        </Button>
+      )}
+
       <MapContainer
         center={position}
         zoom={13}
@@ -53,10 +78,10 @@ function ChangeCenter({ position }) {
   map.setView(position);
   return null;
 }
-function DetectMap(){
+function DetectMap() {
   const navigate = useNavigate();
-  
+
   useMapEvent({
-    click : (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
-  })
+    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+  });
 }
